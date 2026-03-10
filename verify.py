@@ -1,0 +1,1 @@
+Hello, this is a test for Huffman Compression! Huffman coding is awesome and uses Binary Trees.

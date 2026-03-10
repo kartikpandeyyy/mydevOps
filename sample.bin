@@ -1,0 +1,42 @@
+import argparse
+import sys
+from huffman import HuffmanCoding
+
+def main():
+    parser = argparse.ArgumentParser(description='Huffman Coding Compression Tool')
+    
+    subparsers = parser.add_subparsers(dest='command', help='Commands')
+
+    # Compress command
+    compress_parser = subparsers.add_parser('compress', help='Compress a file')
+    compress_parser.add_argument('file', help='Path to the file to compress')
+
+    # Decompress command
+    decompress_parser = subparsers.add_parser('decompress', help='Decompress a file')
+    decompress_parser.add_argument('file', help='Path to the binary file to decompress')
+    
+    args = parser.parse_args()
+    
+    if args.command == 'compress':
+        try:
+            h = HuffmanCoding()
+            output_path = h.compress_file(args.file)
+            print("Compressed file saved to:", output_path)
+        except Exception as e:
+            print(f"Error compressing file: {e}")
+            
+    elif args.command == 'decompress':
+        try:
+            h = HuffmanCoding()
+            output_path = h.decompress_file(args.file)
+            print("Decompressed file saved to:", output_path)
+        except Exception as e:
+            print(f"Error decompressing file: {e}")
+            import traceback
+            traceback.print_exc()
+
+    else:
+        parser.print_help()
+
+if __name__ == "__main__":
+    main()

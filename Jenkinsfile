@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('test') {
+    stage('build') {
       steps {
         bat 'echo "Compiling"'
       }
